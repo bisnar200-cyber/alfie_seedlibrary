@@ -1,0 +1,8 @@
+name = "alfie-seedlibrary"
+main = "worker.js"
+compatibility_date = "2025-01-01"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "seedlibrary"
+database_id = "PASTE-YOUR-DATABASE-ID-HERE"
