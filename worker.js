@@ -3,6 +3,8 @@ const HTML = String.raw`<!doctype html>
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Alfred’s Seed Library</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap">
 <style>
 :root{--ink:#3a2330;--bg:#fff;--leaf:#c94579;--soil:#a8527a;--mist:#fdeaf2;--line:#f2c6d8;--err:#fbeaea;--errl:#a33;
 box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
@@ -40,6 +42,19 @@ header,main{position:relative;z-index:1}
 @keyframes bob{0%,100%{transform:translateY(0) rotate(-3deg)}50%{transform:translateY(-14px) rotate(3deg)}}
 @keyframes drift{from{left:-3%}to{left:calc(100% - 100px)}}
 @keyframes fall{0%{transform:translate(0,-30px) rotate(0)}100%{transform:translate(var(--sw,30px),110vh) rotate(360deg)}}
+.walkway{position:relative;height:100px;overflow:hidden;margin-top:4px;border-bottom:3px dotted #f2c6d8}
+.w{position:absolute;bottom:12px;left:-70px;width:56px;height:56px;animation:walk 15s linear infinite}
+.w:nth-child(2){animation-duration:19s;animation-delay:-6s}
+.w:nth-child(3){animation-duration:13s;animation-delay:-9s}
+.w:nth-child(4){animation-duration:17s;animation-delay:-3s}
+.w i{display:block;width:56px;height:56px;border-radius:50%;border:2px solid #fff;background-size:cover;background-position:center top;box-shadow:0 4px 10px rgba(201,69,121,.3);animation:waddle .5s ease-in-out infinite alternate}
+.w b{position:absolute;bottom:-8px;width:16px;height:8px;border-radius:50%;background:#c94579;animation:foot .5s ease-in-out infinite alternate}
+.w b:nth-of-type(1){left:10px}
+.w b:nth-of-type(2){right:10px;animation-direction:alternate-reverse}
+@keyframes walk{from{left:-70px}to{left:100%}}
+@keyframes waddle{from{transform:translateY(0) rotate(-6deg)}to{transform:translateY(-6px) rotate(6deg)}}
+@keyframes foot{from{transform:translateX(-4px)}to{transform:translateX(4px)}}
+@media (prefers-reduced-motion:reduce){.w,.w i,.w b{animation:none}.w{left:20px}.w:nth-child(2){left:90px}.w:nth-child(3){left:160px}.w:nth-child(4){left:230px}}
 @media (prefers-reduced-motion:reduce){.friends i,.sprite{animation:none}.petal{display:none}}
 h2{margin-top:0}
 .msg{background:var(--mist);border-left:4px solid var(--leaf);padding:8px 12px;margin-bottom:12px}
@@ -57,10 +72,40 @@ table{border-collapse:collapse;width:100%}
 th,td{text-align:left;padding:8px;border-bottom:1px solid var(--line);white-space:nowrap}
 th{background:var(--mist)}
 .note{font-size:.85rem;opacity:.8}
+header{background:linear-gradient(135deg,#ff8fb8 0%,#c94579 55%,#a65bb5 100%);border-radius:0 0 30px 30px;padding:18px 18px 14px;box-shadow:0 8px 20px rgba(201,69,121,.35);overflow:hidden}
+header>*{position:relative;z-index:1}
+header>.hearts{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+header h1{font-family:'Pacifico','Brush Script MT','Segoe Script',cursive;font-weight:400;font-size:1.7rem;letter-spacing:.5px;text-shadow:0 2px 0 rgba(0,0,0,.12),0 0 14px rgba(255,255,255,.55);animation:wiggle 4s ease-in-out infinite;transform-origin:left center}
+.sp{display:inline-block;margin:0 6px;animation:twinkle 1.6s ease-in-out infinite}
+.sp.s-b{animation-delay:.8s}
+.tag{margin:2px 0 8px;font-size:.85rem;color:#ffe6f0;letter-spacing:1px}
+.hearts b{position:absolute;bottom:-20px;color:rgba(255,255,255,.75);font-weight:400;animation:rise 6s linear infinite}
+.hearts b:nth-child(1){left:6%;font-size:14px}
+.hearts b:nth-child(2){left:20%;font-size:11px;animation-delay:-1.5s}
+.hearts b:nth-child(3){left:38%;font-size:16px;animation-delay:-3s}
+.hearts b:nth-child(4){left:55%;font-size:12px;animation-delay:-4.5s}
+.hearts b:nth-child(5){left:70%;font-size:15px;animation-delay:-2s}
+.hearts b:nth-child(6){left:84%;font-size:11px;animation-delay:-5s}
+.hearts b:nth-child(7){left:94%;font-size:14px;animation-delay:-3.8s}
+nav{gap:8px}
+nav button{background:rgba(255,255,255,.22);border:0;border-radius:999px;padding:5px 14px;color:#fff;transition:transform .15s,background .15s}
+nav button:hover{transform:translateY(-2px);background:rgba(255,255,255,.4)}
+nav button.on{background:#fff;color:#c94579;font-weight:bold;box-shadow:0 3px 8px rgba(0,0,0,.15)}
+.friends i{box-shadow:0 0 0 2px #ffb3d1}
+h2::before{content:'\2661 ';color:#c94579}
+form button,button.sm{border-radius:999px;padding:8px 16px;transition:transform .15s}
+form button:hover,button.sm:hover{transform:scale(1.06)}
+main{border:3px dotted #f7a8c4;box-shadow:0 8px 24px rgba(201,69,121,.2)}
+tr:hover td{background:rgba(247,168,196,.18)}
+input:focus,select:focus{outline:2px solid #f7a8c4;border-color:#f7a8c4}
+@keyframes wiggle{0%,100%{transform:rotate(-1.5deg)}50%{transform:rotate(1.5deg)}}
+@keyframes twinkle{0%,100%{transform:scale(.8) rotate(0);opacity:.7}50%{transform:scale(1.25) rotate(20deg);opacity:1}}
+@keyframes rise{0%{transform:translateY(0) scale(.8);opacity:0}20%{opacity:1}100%{transform:translateY(-110px) scale(1.2);opacity:0}}
+@media (prefers-reduced-motion:reduce){header h1,.sp,.hearts b{animation:none}}
 </style>
 </head><body>
 <div class="bg-fx" aria-hidden="true"><i class="sprite s1 a1"></i><i class="sprite s2 a2"></i><i class="sprite s3 a3"></i><i class="sprite s4 a4"></i></div>
-<header><div class="bar"><h1>Alfred’s Seed Library</h1><div class="friends" aria-hidden="true"><i class="a1"></i><i class="a2"></i><i class="a3"></i><i class="a4"></i></div><div id="who"></div></div><nav id="nav"></nav></header>
+<header><div class="hearts" aria-hidden="true"><b>♡</b><b>✦</b><b>♡</b><b>✦</b><b>♡</b><b>✦</b><b>♡</b></div><div class="bar"><h1><span class="sp">✨</span>Alfred’s Seed Library<span class="sp s-b">🌱</span></h1><div class="friends" aria-hidden="true"><i class="a1"></i><i class="a2"></i><i class="a3"></i><i class="a4"></i></div><div id="who"></div></div><p class="tag">♡ share seeds · grow together ♡</p><nav id="nav"></nav></header>
 <main><div id="msg"></div><div id="view">Loading…</div></main>
 <script>
 (function(){var fx=document.querySelector('.bg-fx');for(var i=0;i<14;i++){var p=document.createElement('b');p.className='petal';p.style.left=(Math.random()*100)+'%';p.style.animationDuration=(8+Math.random()*10)+'s';p.style.animationDelay=(-Math.random()*14)+'s';p.style.setProperty('--sw',(20+Math.random()*50)+'px');fx.appendChild(p)}})();
@@ -106,7 +151,7 @@ function render(){
     v='<div class="login"><h2>'+(hasStaff?'Log in':'Create account')+'</h2>'+
       (hasStaff?'':'<p class="note">No accounts yet. The first account you create will be the librarian.</p>')+
       '<form onsubmit="'+(hasStaff?'doLogin':'doFirst')+'(event)"><input id="u" placeholder="Username" autocomplete="username" required>'+
-      '<input id="p" type="password" placeholder="Password" autocomplete="current-password" required><button>'+(hasStaff?'Log in':'Create account')+'</button></form></div>';
+      '<input id="p" type="password" placeholder="Password" autocomplete="current-password" required><button>'+(hasStaff?'Log in':'Create account')+'</button></form></div><div class="walkway" aria-hidden="true"><span class="w"><i class="a1"></i><b></b><b></b></span><span class="w"><i class="a2"></i><b></b><b></b></span><span class="w"><i class="a3"></i><b></b><b></b></span><span class="w"><i class="a4"></i><b></b><b></b></span></div>';
   } else if(tab=='members'){
     v='<h2>Members</h2><form onsubmit="addMember(event)"><input id="n" placeholder="Full name" required><input id="c" placeholder="Phone or email"><button>Add member</button></form>'+
       table(['ID','Name','Contact'],data.member.map(function(r){return '<tr><td>'+r.member_id+'</td><td>'+esc(r.name)+'</td><td>'+esc(r.contact)+'</td></tr>'}).join(''),'No members yet. Add the first one above.');
